@@ -1,0 +1,172 @@
+<div class="create-post-container">
+    <h1>Create a post for your property</h1>
+    
+    <form [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="building">Choose your apartment building</label>
+        <select id="building" formControlName="building">
+          <option value="" disabled selected>Select your building</option>
+          <option value="1">Aprartment</option>
+          <option value="2">Building</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="name">Enter property name</label>
+        <input type="text" placeholder="Enter property name" id="name" formControlName="name">
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['name']?.errors?.['required']">Property name is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Is this shared property?</label>
+        <div>
+          <input type="radio" id="sharedYes" formControlName="sharedProperty" value="yes">
+          <label for="sharedYes">Yes</label>
+        </div>
+        <div>
+          <input type="radio" id="sharedNo" formControlName="sharedProperty" value="no">
+          <label for="sharedNo">No</label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="location">Property location</label>
+        <input type="text" placeholder="Enter property address" id="location" formControlName="location">
+      </div>
+  
+      <div class="form-group">
+        <label for="details">Property details</label>
+        <textarea id="details" placeholder="Enter property details" formControlName="details"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Stay/lease type</label>
+        <div>
+          <input type="radio" id="longTerm" formControlName="leaseType" value="longTerm">
+          <label for="longTerm">Long term</label>
+        </div>
+        <div>
+          <input type="radio" id="shortTerm" formControlName="leaseType" value="shortTerm">
+          <label for="shortTerm">Short term</label>
+        </div>
+        <div>
+          <input type="radio" id="both" formControlName="leaseType" value="both">
+          <label for="both">Both</label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="rent">Expected rent</label>
+        <div class="currency-input">
+          <select id="currency" formControlName="currency">
+            <option value="USD">$</option>
+            <option value="EUR">€</option>
+            <option value="INR">₹</option>
+          </select>
+          <input type="number" id="rent" formControlName="rent">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <input type="checkbox" id="negotiable" formControlName="negotiable">
+        <label for="negotiable">Negotiable</label>
+      </div>
+  
+      <div class="form-group">
+        <label>Price mode</label>
+        <div>
+          <input type="radio" id="perMonth" formControlName="priceMode" value="perMonth">
+          <label for="perMonth">Per Month</label>
+        </div>
+        <div>
+          <input type="radio" id="utilitiesIncluded" formControlName="priceMode" value="utilitiesIncluded">
+          <label for="utilitiesIncluded">Utilities included in rent</label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Furnished</label>
+        <div>
+          <input type="radio" id="furnishedYes" formControlName="furnished" value="yes">
+          <label for="furnishedYes">Yes</label>
+        </div>
+        <div>
+          <input type="radio" id="furnishedNo" formControlName="furnished" value="no">
+          <label for="furnishedNo">No</label>
+        </div>
+      </div>
+  
+      <div class="form-group" formGroupName="amenities">
+        <label>Amenities included</label>
+        <div>
+          <input type="checkbox" id="amenityWifi" formControlName="wifi">
+          <label for="amenityWifi">Wi-Fi</label>
+        </div>
+        <div>
+          <input type="checkbox" id="amenityGym" formControlName="gym">
+          <label for="amenityGym">Gym</label>
+        </div>
+        <div>
+          <input type="checkbox" id="parking" formControlName="parking">
+          <label for="amenityParking">Parking</label>
+        </div>
+        <div>
+          <input type="checkbox" id="powerbackup" formControlName="powerbackup">
+          <label for="amenityParking">Power Backup</label>
+        </div>
+        <div>
+          <input type="checkbox" id="laundry" formControlName="laundry">
+          <label for="amenityParking">Laundry service</label>
+        </div>
+        <div>
+          <input type="checkbox" id="waterHeater" formControlName="waterHeater">
+          <label for="amenityParking">Water Heater</label>
+        </div>
+        <div>
+          <input type="checkbox" id="swimmingPool" formControlName="swimmingPool">
+          <label for="amenityParking">Swimming Pool</label>
+        </div>
+        <div>
+          <input type="checkbox" id="visitorParking" formControlName="visitorParking">
+          <label for="amenityParking">Visitors Parking</label>
+        </div>
+        <div>
+          <input type="checkbox" id="clubHouse" formControlName="clubHouse">
+          <label for="amenityParking">Club House</label>
+        </div>
+        <div>
+          <input type="checkbox" id="garbage" formControlName="garbage">
+          <label for="amenityParking">Garbage Disposal</label>
+        </div>
+        <!-- Add more amenities as needed -->
+      </div>
+  
+      <div class="form-grup">
+        <h3>Description</h3>
+      </div>
+      <div class="form-group">
+        <label for="descriptionTitle">Title</label>
+        <input type="text" placeholder="Enter title" id="descriptionTitle" formControlName="descriptionTitle">
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter a detailed description within 1400 letters" formControlName="description" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="propertyImages">Upload Property Images</label>
+        <input type="file" id="propertyImages" (change)="onFileSelect($event)" multiple>
+        <div class="image-preview" *ngIf="selectedImages.length > 0">
+          <div class="image-thumbnail" *ngFor="let img of selectedImages">
+            <img [src]="img" alt="Property Image">
+          </div>
+        </div>
+      </div>
+  
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+  

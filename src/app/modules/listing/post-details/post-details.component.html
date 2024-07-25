@@ -1,0 +1,31 @@
+<div class="post-details-container">
+    <h1>{{ post.title }}</h1>
+  
+    <div class="image-gallery">
+      <div *ngFor="let image of post.images" class="image-wrapper">
+        <img [src]="image" alt="Post Image">
+      </div>
+    </div>
+  
+    <div class="post-info">
+      <h2>Property Information</h2>
+      <p><strong>Building:</strong> {{ post.building !== '1' ? 'Building' : 'Apartment' }}</p>
+      <p><strong>Property Name:</strong> {{ post.name }}</p>
+      <p><strong>Shared Property:</strong> {{ post.sharedProperty ? 'Yes' : 'No' }}</p>
+      <p><strong>Location:</strong> {{ post.location }}</p>
+      <p><strong>Details:</strong> {{ post.details }}</p>
+      <p><strong>Lease Type:</strong> {{ post.leaseType }}</p>
+      <p><strong>Expected Rent:</strong> {{ post.currency }} {{ post.rent }}</p>
+      <p><strong>Negotiable:</strong> {{ post.negotiable ? 'Yes' : 'No' }}</p>
+      <p><strong>Price Mode:</strong> {{ post.priceMode }}</p>
+      <p><strong>Furnished:</strong> {{ post.furnished ? 'Yes' : 'No' }}</p>
+      <p><strong>Amenities:</strong> {{ getAmenities(post.amenities) }}</p>
+    </div>
+  
+    <div class="post-description">
+      <h2>Description</h2>
+      <h3>{{ post.descriptionTitle }}</h3>
+      <p>{{ post.description }}</p>
+    </div>
+    <app-comments [comments]="post.comments"></app-comments>
+  </div>

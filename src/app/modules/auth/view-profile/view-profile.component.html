@@ -1,0 +1,35 @@
+<div class="profile-container">
+    <h1>User Profile</h1>
+    
+    <div class="profile-details">
+      <div class="profile-item">
+        <label for="username">Username:</label>
+        <span id="username">{{ user.username }}</span>
+      </div>
+      
+      <div class="profile-item">
+        <label for="email">Email:</label>
+        <span id="email">{{ user.email }}</span>
+      </div>
+      
+      <div class="profile-item">
+        <label for="fullName">Full Name:</label>
+        <span id="fullName">{{ user.fullName }}</span>
+      </div>
+      
+      <div class="profile-item">
+        <label for="contactNumber">Contact Number:</label>
+        <span id="contactNumber">{{ user.contactNumber }}</span>
+      </div>
+      
+      <div class="profile-item">
+        <label for="address">Address:</label>
+        <span id="address">{{ user.address }}</span>
+      </div>
+      
+      <div class="profile-actions">
+        <button class="btn logout" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+  

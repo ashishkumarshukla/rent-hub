@@ -1,0 +1,24 @@
+<div class="post">
+    <div class="post-images">
+      <!-- Images displayed as slides -->
+      <div class="slides">
+        @for(image of post.images; track image) {
+            <img src={{image}} alt="Image" class="slide" />
+        }
+        <!-- Add more images as needed -->
+      </div>
+      <button class="prev" (click)="prevSlide()">&#10094;</button>
+      <button class="next" (click)="nextSlide()">&#10095;</button>
+    </div>
+    <div class="post-name">
+        <h3>{{post.name}}</h3>
+    </div>
+    <div class="post-description">
+      <p> {{post.description}} </p>
+    </div>
+    <div class="post-buttons">
+      <button (click)="viewDetails()" class="btn view-details">View Details</button>
+      <button (click)="markFavourite(post)" class="btn mark-favorites">Mark as Favorites</button>
+    </div>
+  </div>
+  

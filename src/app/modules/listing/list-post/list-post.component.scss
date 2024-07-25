@@ -1,0 +1,31 @@
+app-post {
+    display: flex;
+    margin: 5px;
+    width: auto;
+    height: auto;
+    border: 0px solid black;
+    flex-wrap: wrap;
+}
+
+.post-container {
+    display: ruby;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .view-details {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .new-post-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+  }
