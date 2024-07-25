@@ -1,6 +1,10 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { posts } from '../../../mock-data';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-create-post',
@@ -15,11 +19,12 @@ export class CreatePostComponent {
   submitted: boolean = false;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,   private _snackBar: MatSnackBar,
+    private router: Router, private localStorageService: LocalStorageService) {
     this.createPostForm = this.fb.group({
       building: ['', Validators.required],
       name: ['', Validators.required],
-      sharedProperty: ['', Validators.required],
+      sharedProperty: [false, Validators.required],
       location: ['', Validators.required],
       details: ['', Validators.required],
       leaseType: ['', Validators.required],
@@ -46,11 +51,19 @@ export class CreatePostComponent {
     });
   }
 
+
+  goBack() {
+    this.router.navigate(['listing']);
+  }
+
   onSubmit() {
     this.submitted = true;
-    console.log("this.create ", this.createPostForm.value);
     if (this.createPostForm.valid) {
-      console.log(this.createPostForm.value);
+      console.log(posts[0]);
+      const otherProps = { id: posts.length+1, images: [], comments: [] }
+      posts.push({...this.createPostForm.value, ...otherProps});
+      this._snackBar.open("Your property added successfully!", '', {duration: 2000});
+      this.goBack();
     } 
   }
 
@@ -68,4 +81,5 @@ export class CreatePostComponent {
       }
     }
   }
+
 }

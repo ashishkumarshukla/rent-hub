@@ -87,3 +87,27 @@
     object-fit: cover;
   }
   
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  
+  .back-btn {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 100px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .view-details {
+    background-color: #007bff;
+    color: white;
+  }

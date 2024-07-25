@@ -1,5 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedService } from '../../../services/data.service';
 import { CommentsComponent } from '../comments/comments.component';
 
@@ -13,8 +14,12 @@ import { CommentsComponent } from '../comments/comments.component';
 export class PostDetailsComponent {
   post!: Post;
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private router: Router) {
     this.sharedService.postData$.subscribe( data => { this.post = data;});
+  }
+
+  goBack() {
+    this.router.navigate(['listing']);
   }
 
   getAmenities(obj: any) {

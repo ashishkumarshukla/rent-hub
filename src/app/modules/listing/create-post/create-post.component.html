@@ -1,3 +1,6 @@
+<div class="back-btn">
+  <button (click)="goBack()" class="btn view-details">Back</button>
+</div>
 <div class="create-post-container">
     <h1>Create a post for your property</h1>
     
@@ -9,6 +12,9 @@
           <option value="1">Aprartment</option>
           <option value="2">Building</option>
         </select>
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['building']?.errors?.['required']">Please select a value</div>
+        </div>
       </div>
   
       <div class="form-group">
@@ -28,6 +34,9 @@
         <div>
           <input type="radio" id="sharedNo" formControlName="sharedProperty" value="no">
           <label for="sharedNo">No</label>
+        </div>
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['sharedProperty']?.errors?.['required']">Please select a value</div>
         </div>
       </div>
   
@@ -55,6 +64,9 @@
           <input type="radio" id="both" formControlName="leaseType" value="both">
           <label for="both">Both</label>
         </div>
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['leaseType']?.errors?.['required']">Please select a value</div>
+        </div>
       </div>
   
       <div class="form-group">
@@ -66,6 +78,9 @@
             <option value="INR">₹</option>
           </select>
           <input type="number" id="rent" formControlName="rent">
+          <div *ngIf="submitted" class="error-message">
+            <div *ngIf="createPostForm?.controls?.['rent']?.errors?.['required']">Please enter a value</div>
+          </div>
         </div>
       </div>
   
@@ -149,11 +164,17 @@
       <div class="form-group">
         <label for="descriptionTitle">Title</label>
         <input type="text" placeholder="Enter title" id="descriptionTitle" formControlName="descriptionTitle">
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['descriptionTitle']?.errors?.['required']">Please enter a value</div>
+        </div>
       </div>
   
       <div class="form-group">
         <label for="description">Description</label>
         <textarea id="description" placeholder="Enter a detailed description within 1400 letters" formControlName="description" rows="5"></textarea>
+        <div *ngIf="submitted" class="error-message">
+          <div *ngIf="createPostForm?.controls?.['description']?.errors?.['required']">Please enter a value</div>
+        </div>
       </div>
 
       <div class="form-group">
