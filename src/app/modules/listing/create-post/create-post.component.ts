@@ -20,7 +20,7 @@ export class CreatePostComponent {
 
 
   constructor(private fb: FormBuilder,   private _snackBar: MatSnackBar,
-    private router: Router, private localStorageService: LocalStorageService) {
+    private router: Router) {
     this.createPostForm = this.fb.group({
       building: ['', Validators.required],
       name: ['', Validators.required],

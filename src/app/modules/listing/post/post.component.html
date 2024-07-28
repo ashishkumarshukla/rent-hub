@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" *ngIf="post">
     <div class="post-images">
       <!-- Images displayed as slides -->
       <div class="slides">
@@ -18,7 +18,7 @@
     </div>
     <div class="post-buttons">
       <button (click)="viewDetails()" class="btn view-details">View Details</button>
-      <button (click)="markFavourite(post)" class="btn mark-favorites">Mark as Favorites</button>
+      <button (click)="markFavourite(post)" class="btn mark-favorites">{{!post.isFavorite ? 'Mark as Favorites' : 'Favorite Marked'}}</button>
     </div>
-  </div>
+</div>
   

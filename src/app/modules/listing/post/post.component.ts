@@ -1,13 +1,14 @@
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { favourites } from '../../../mock-data';
+import { favourites, posts } from '../../../mock-data';
 import { SharedService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
@@ -40,7 +41,11 @@ export class PostComponent {
 
   markFavourite(data: any) {
     favourites.push(data);
-    this._snackBar.open("Property marked as favourite!", '', {duration: 2000});
+    let post = posts.find(post => post.id === data.id);
+    if (post) {
+      post.isFavorite = !post.isFavorite;
+      this._snackBar.open(post.isFavorite ? "Property marked as favourite!" :"Property removed from favourite!" , '', {duration: 2000});
+    }
   }
 
 }

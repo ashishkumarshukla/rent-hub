@@ -1,12 +1,26 @@
-<div *ngIf="isUserLoggedIn" class="new-post-container">
-    <button (click)="newPost()" class="btn view-details">New Post</button>
-</div>
+<form  class="search-container" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="search-input">
+        <input type="search" id="search" formControlName="search" />
+        <button type="submit" class="btn search-button">
+            <i class="search-icon"></i> Search
+        </button>
+    </div>
+    <div class="new-post-container">
+    <button *ngIf="isUserLoggedIn" (click)="newPost()" class="btn view-details">New Post</button>
+    </div>
+</form>
+  
+  
+  
 <div>
     <!-- add corousel code here -->
-    <app-post [post]="posts[0]"></app-post>
+    <app-post [post]="postsBackup[0]"></app-post>
 </div>
-<div class="post-container">
+<div class="post-container" *ngIf="posts.length">
     @for(post of posts; track post) {
         <app-post [post]="post"></app-post>
     }
+</div>
+<div class="no-post" *ngIf="!posts.length">
+    <span>No post found!!</span> 
 </div>
